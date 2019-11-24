@@ -313,6 +313,8 @@ export default {
             if (typeof vm.size === 'undefined') {
               // No 'size' prop set, the size will be set to `100 / nbPanes` after this loop since we don't know yet how many panes there are.
               setPanesSizesToDefault = true
+
+              if (this.panesCount && this.panesCount < nbPanes) this.addingPane()
             }
             else size = parseFloat(vm.size) // The size is given in prop.
           }
@@ -391,6 +393,14 @@ export default {
       Object.entries(args).forEach(([key, value]) => {
         pane[key] = value
       })
+    },
+
+    addingPane () {
+      let shrinkablePanes = []
+      let collapsedPanesCount = 0
+      let shrinkableAmount = 0 // Total of how much the current panes can shrink to free space to new pane.
+      let spaceToSubtract = 100 - this.panes.reduce((sum, pane) => (sum += pane.size) && sum, 0)
+      debugger
     },
 
     distributeEmptySpace () {

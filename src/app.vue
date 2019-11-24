@@ -53,11 +53,11 @@
         a.ml-2.d-inline-flex.align-center(href="https://codepen.io/antoniandre/pen/XybPKP" target="_blank") //codepen.io/antoniandre/pen/XybPKP
           v-icon(small color="primary") open_in_new
 
-      splitpanes.default-theme.example.example1(style="height: 400px")
+      //- splitpanes.default-theme.example.example1(style="height: 400px")
         pane(min-size="20")
           span 1#[br]#[em.specs I have a min width of 20%]
         pane
-          splitpanes.default-theme.example(horizontal)
+          //- splitpanes.default-theme.example(horizontal)
             pane
               span 2
             pane
@@ -173,7 +173,7 @@
         a(name="horizontal-layout")
       p You can also double click a splitter to maximize the next pane! (First pane splitter will be an option soon)
       p If you want to disable the 'double click splitter to maximize' behavior, you can add this attribute: #[span.code :dbl-click-splitter="false"].
-      splitpanes.default-theme.example(horizontal style="height: 400px")
+      //- splitpanes.default-theme.example(horizontal style="height: 400px")
         pane(min-size="20", max-size="70")
           span 1#[br]#[em.specs I have a min height of 20% &amp; max height of 70%]
         pane
@@ -205,7 +205,7 @@
           If a pane is missing a default width or height, then all the panes will have the same width or height.#[br]
         | Note that setting a default value is different than setting a min or max value.
 
-      splitpanes.default-theme.example(horizontal style="height: 400px")
+      //- splitpanes.default-theme.example(horizontal style="height: 400px")
         pane(size="65")
           span 1
         pane(size="10")
@@ -233,11 +233,11 @@
       p
         | try it yourself:
         a(href="https://codepen.io/antoniandre/pen/PypgKY" target="_blank" class="ml-2") //codepen.io/antoniandre/pen/PypgKY #[v-icon(small color="primary") open_in_new]
-      splitpanes.default-theme.example(horizontal :push-other-panes="false" style="height: 400px")
+      //- splitpanes.default-theme.example(horizontal :push-other-panes="false" style="height: 400px")
         pane
           span 1
         pane
-          splitpanes(:push-other-panes="false")
+          //- splitpanes(:push-other-panes="false")
             pane
               span 2
             pane
@@ -274,7 +274,7 @@
       h3.mt-12.pt-8.mb-2.subtitle-1
         a(href="#lots-of-splitters") # Lots of splitters &amp; push other panes - all panes have a min width of 5%
         a(name="lots-of-splitters")
-      splitpanes.default-theme.example(style="height: 400px")
+      //- splitpanes.default-theme.example(style="height: 400px")
         pane(v-for="i in 8" :key="i" :min-size="5")
           span {{ i }}
 
@@ -299,7 +299,10 @@
           | Remove pane
 
       splitpanes.default-theme.example(style="height: 400px")
-        pane(v-for="i in panesNumber" :key="i")
+        template(v-for="i in panesNumber")
+          pane(v-if="i === 1" :key="i" :max-size="33.33")
+            span {{ i }}
+          pane(v-else :key="i")
             span {{ i }}
 
       ssh-pre(language="html-vue" label="HTML").
@@ -323,7 +326,7 @@
         a(name="programmatic-resizing")
       p.mb-6 This example shows the programmatic way of resizing panes. And how it works both ways.
       v-slider(v-model="paneSize" label="First pane size" thumb-label="always" thumb-size="25" :min="0" :max="100")
-      splitpanes.default-theme.example(@resize="paneSize = $event[0].size" style="height: 400px")
+      //- splitpanes.default-theme.example(@resize="paneSize = $event[0].size" style="height: 400px")
         pane(:size="paneSize")
           span {{ paneSize }}%
         pane(:size="100 - paneSize")
@@ -359,9 +362,9 @@
         v-btn.mt-2(color="primary" small @click="incrementNumber(3)")
           v-icon.mr-1(size="20") add
           | Increment pane #3
-      splitpanes.default-theme.example(style="height: 400px" horizontal)
+      //- splitpanes.default-theme.example(style="height: 400px" horizontal)
         pane
-          splitpanes
+          //- splitpanes
             pane.layout.column.text-center(v-for="i in 3" :key="i")
               span {{ i }}#[br]
               em Number is: {{ randomNums[i] }}#[br]
@@ -432,7 +435,7 @@
       v-btn.example-vue-router.my-1.mr-1(color="primary" small to="example-home-view") Home view
       v-btn.example-vue-router.my-1(color="primary" small to="example-another-view") Another view
 
-      splitpanes.default-theme.example-vue-router.mt-2(style="height: 400px")
+      //- splitpanes.default-theme.example-vue-router.mt-2(style="height: 400px")
         pane.layout.column.fill-height(min-size="20")
           .flex.pa-2
             p.headline Navigation
@@ -506,7 +509,7 @@
           This event is only emitted if dragging did not occur between mousedown and mouseup.
       p Try resizing panes and check the logs bellow.
 
-      splitpanes.default-theme.example(
+      //- splitpanes.default-theme.example(
         @resize="log('resize', $event)"
         @resized="log('resized', $event)"
         @pane-maximize="log('pane-maximize', $event)"
@@ -549,9 +552,9 @@
         | try it yourself:
         a(href="https://codepen.io/antoniandre/pen/XxRZmB" target="_blank" class="ml-2") //codepen.io/antoniandre/pen/XxRZmB #[v-icon(small color="primary") open_in_new]
 
-      splitpanes.touch-example(horizontal style="height: 400px")
+      //- splitpanes.touch-example(horizontal style="height: 400px")
         pane
-          splitpanes.touch-example
+          //- splitpanes.touch-example
             pane
               span 1
             pane
@@ -611,9 +614,9 @@
         | try it yourself:
         a(href="https://codepen.io/antoniandre/pen/mzGZXR" target="_blank" class="ml-2") //codepen.io/antoniandre/pen/mzGZXR #[v-icon(small color="primary") open_in_new]
 
-      splitpanes.example-own-style(horizontal style="height: 400px")
+      //- splitpanes.example-own-style(horizontal style="height: 400px")
         pane
-          splitpanes
+          //- splitpanes
             pane
               span 1
             pane
