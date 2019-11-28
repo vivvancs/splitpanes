@@ -32,9 +32,11 @@ export default {
       // whereas the component is not mounted yet).
       const children = this.$children
       this.panes.forEach(pane => {
-        children[pane.index].update({
-          [this.horizontal ? 'height' : 'width']: `${pane.size}%`
-        })
+        if (children[pane.index]) {
+          children[pane.index].update({
+            [this.horizontal ? 'height' : 'width']: `${pane.size}%`
+          })
+        }
       })
     },
     bindEvents () {
